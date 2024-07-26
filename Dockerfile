@@ -15,10 +15,9 @@ RUN apt-get update \
         && apt-get update \
  && apt-get install -y --no-install-recommends openssh-server \
  && echo "$SSH_PASSWD" | chpasswd 
- 
+
 RUN service ssh start
 
-RUN chmod u+x /usr/local/bin/init.sh
 EXPOSE 8000 2222
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
