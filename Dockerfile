@@ -9,15 +9,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-ENV SSH_PASSWD "root:Docker!"
-RUN apt-get update \
-        && apt-get install -y --no-install-recommends dialog \
-        && apt-get update \
- && apt-get install -y --no-install-recommends openssh-server \
- && echo "$SSH_PASSWD" | chpasswd 
-
-RUN service ssh start
-
-EXPOSE 8000 2222
+EXPOSE 8000:8000
 
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
